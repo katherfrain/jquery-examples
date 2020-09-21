@@ -11,6 +11,13 @@
     (Make it toggle back and forth between hidden and show)
     */
     $(function() {
+
+      const $header = $('#section-header');
+      const $paragraph = $('#section');
+
+      $header.on('click', function(){
+        $paragraph.toggle();
+      })
       // Write code here
     });
     </script>

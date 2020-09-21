@@ -5,16 +5,45 @@
     <title></title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-    /*
-    Make a Todo List
 
-    0. Make it so that after entering the task description, in the text field and clicking the "Add Task" button, a new task appears inside the element with the id todo-list.
-    1. the ability to remove tasks (add an x button)
-    2. the ability to check off tasks - strikes them out wo removing (add a checkbox)
-    3. the ability to delete a task
-    4. the ability to edit an existing task
+$(document).ready(function () {
+      const $add = $('#add-button');
+      const $list = $('#todo-list');
+      const $task = $('#description');
 
-    */
+      $add.on('click', function(event) { 
+        $list.append(`<li><span>${$task.val()}</span>
+          <button class="delete">X</button>
+          <button class="edit">Edit</button>
+          </li>`);      
+      });
+
+      $list.on('click', '.delete', function(event) {
+        event.preventDefault();
+        $(this).parent().remove();
+      });
+      $list.on('click', '.edit', function(event){
+        event.preventDefault();
+        $(this).parent().append(
+          `<input class="help" placeholder="Insert new task here"><button class="submit">Done Editing!</button>`
+        )
+      });
+
+      const $help = $('.help');
+
+      $list.on('click', '.submit', function(event){
+        event.preventDefault();
+        
+        //const killbutton = $(this).parent().remove();
+        const value = $(this).siblings('.help').val();
+        
+      $(this).siblings('span').text(value);
+      $(this).siblings('.help').remove()
+      $(this).remove();
+
+      });
+});
+
     </script>
     <style>
     #wrapper {

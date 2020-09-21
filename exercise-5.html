@@ -12,6 +12,15 @@
     HINT: Lookup .attr()
     */
     $(function() {
+
+    const $iframe = $('#iframe');
+    const $alllinks = $('[href]');
+    
+    $alllinks.on('click', function(event) {
+      event.preventDefault();
+      $iframe.prop('src', $(this).attr('href'));
+    });
+
       // Write code here
     });
     </script>
